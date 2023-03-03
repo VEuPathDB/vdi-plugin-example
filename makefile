@@ -9,4 +9,4 @@ default:
 	@echo
 
 build:
-	@docker build -t $(IMAGE_NAME):latest .
+	@docker build -t veupathdb/$(IMAGE_NAME):latest .
