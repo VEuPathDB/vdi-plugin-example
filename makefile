@@ -5,8 +5,11 @@ default:
 	@echo "Usage:"
 	@echo "  make build"
 	@echo
-	@echo "Builds the docker image \"$(IMAGE_NAME):latest\" for local use."
+	@echo "    Builds the docker image \"$(IMAGE_NAME):latest\" for local use."
 	@echo
+	@echo "  make run"
+	@echo
+	@echo "    Runs an already build docker image ($(IMAGE_NAME):latest)."
 
 build:
 	@docker build -t veupathdb/$(IMAGE_NAME):latest .
