@@ -10,3 +10,6 @@ default:
 
 build:
 	@docker build -t veupathdb/$(IMAGE_NAME):latest .
+
+run:
+	@docker run -it --rm --env-file=.env veupathdb/$(IMAGE_NAME):latest

@@ -63,8 +63,8 @@ NOTE: This example assumes `sshuttle` is already running.
 +
 [source, shell-session]
 ----
-$ make build-bash-example
-$ make run-bash-example
+$ make build
+$ make run
 ----
 
 === Creating a New Plugin Handler
