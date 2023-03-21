@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 # Get the current workspace directory.
-SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+BIN_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+# Get the lib directory
+LIB_DIR="$(cd -- "$(dirname -- "$BIN_DIR")" &> /dev/null && pwd)/lib"
 
 # Include some common functionality
-. "$SCRIPT_DIR/includes.sh"
-
+. "$LIB_DIR/includes.sh"
 
 #
 # Input Handling
