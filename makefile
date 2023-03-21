@@ -15,4 +15,4 @@ build:
 	@docker build -t veupathdb/$(IMAGE_NAME):latest .
 
 run:
-	@docker run -it --rm --env-file=.env veupathdb/$(IMAGE_NAME):latest
+	@docker run -it --rm --env-file=.env -p 8080:8080 veupathdb/$(IMAGE_NAME):latest
