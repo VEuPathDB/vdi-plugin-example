@@ -1,4 +1,4 @@
-FROM veupathdb/vdi-plugin-handler-server:latest
+FROM veupathdb/vdi-plugin-handler-base:latest
 
 RUN apk add --no-cache bash; \
   mkdir "/opt/veupathdb"
