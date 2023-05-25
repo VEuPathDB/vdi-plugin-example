@@ -1,4 +1,4 @@
-= VDI Handler Plugin Template
+= VDI Plugin Template
 :icons: font
 
 ifdef::env-github[]
