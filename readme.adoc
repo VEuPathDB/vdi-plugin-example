@@ -9,7 +9,7 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 
-This repository is a template repo for creating new VDI handler plugins.
+This repository is a template repo for creating new VDI plugins.
 
 For more details about the scripts themselves and their inputs and outputs see
 the https://github.com/VEuPathDB/vdi-plugin-handler-server[VDI Plugin Handler Server]
