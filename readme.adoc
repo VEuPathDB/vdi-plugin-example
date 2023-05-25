@@ -49,22 +49,38 @@ variables may be junk strings.
 ==== Run the Example
 
 --
-. Build the target example docker container by using one of the included `make`
-build commands.
 . Start up sshuttle (see the VEuPathDB confluence documentation for running a
 service locally).
-. Run the target example docker container by running one of the included `make`
-run commands.
+. Start the plugin service using the `start` target in the included `makefile`.
 --
 
 Example::
 +
-NOTE: This example assumes `sshuttle` is already running.
-+
 [source, shell-session]
 ----
-$ make build
-$ make run
+$ sshuttle ...
+$ make start
+----
+
+===== Shell Access
+
+Shell access into the plugin container can be gained quickly by using the
+`shell` target in the included `makefile`:
+
+[source, shell-session]
+----
+$ make shell
+----
+
+
+===== Shutdown
+
+To stop the plugin service when it is no longer needed, use the `stop` target
+in the included `makefile`:
+
+[source, shell-session]
+----
+$ make stop
 ----
 
 === Creating a New Plugin Handler
