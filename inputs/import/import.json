@@ -1,22 +1,26 @@
 {
   "$schema": "https://raw.githubusercontent.com/VEuPathDB/vdi-plugin-handler-server/main/schemata/import-request.schema.json#",
   "vdiID": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-  "type": {
-    "name": "type name",
-    "version": "type version"
-  },
-  "projects": [
-    "ExampleDB"
-  ],
-  "owner": "ellie",
-  "name": "my dataset",
-  "description": "my dataset description",
-  "summary": "my dataset summary",
-  "dependencies": [
-    {
-      "resourceIdentifier": "identifier",
-      "resourceDisplayName": "display name",
-      "resourceVersion": "version"
-    }
-  ]
+  "meta": {
+    "type": {
+      "name": "type name",
+      "version": "type version"
+    },
+    "projects": [
+      "ExampleDB"
+    ],
+    "visibility": "private",
+    "owner": 123456,
+    "name": "my dataset",
+    "origin": "",
+    "description": "my dataset description",
+    "summary": "my dataset summary",
+    "dependencies": [
+      {
+        "resourceIdentifier": "identifier",
+        "resourceDisplayName": "display name",
+        "resourceVersion": "version"
+      }
+    ]
+  }
 }
