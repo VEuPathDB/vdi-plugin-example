@@ -1,6 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/VEuPathDB/vdi-plugin-handler-server/main/schemata/import-request.schema.json#",
-  "vdiID": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "vdiID": "ir4tmNahjLcAAQ",
   "meta": {
     "type": {
       "name": "type name",
