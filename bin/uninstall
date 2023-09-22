@@ -14,8 +14,6 @@ LIB_DIR="$(cd -- "$(dirname -- "$BIN_DIR")" &> /dev/null && pwd)/lib"
 
 VDI_ID="$1"
 
-verifyVDIID "$VDI_ID" || exit $EXIT_CODE_UNEXPECTED_ERROR
-
 verifyEnv "DB_HOST" "$DB_HOST" || exit $EXIT_CODE_UNEXPECTED_ERROR
 verifyEnv "DB_PORT" "$DB_PORT" || exit $EXIT_CODE_UNEXPECTED_ERROR
 verifyEnv "DB_NAME" "$DB_NAME" || exit $EXIT_CODE_UNEXPECTED_ERROR
