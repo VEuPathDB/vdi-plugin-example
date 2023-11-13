@@ -85,7 +85,7 @@ in the included `makefile`:
 $ make stop
 ----
 
-=== Creating a New Plugin Handler
+== Creating a New Plugin Handler
 
 To use this repository, click the green "Use this template" button near the top
 right of the repository source file listing table and create a new repository
@@ -94,53 +94,81 @@ for your handler.
 This repository follows the normal steps as outlined in the VEuPathDB Confluence
 doc titled "Deploy Containerized Services for Local Development".
 
-==== Script Development
+=== Script Development
 
-===== What's Included
+==== Prerequisites
 
-.Resources
-* PostgreSQL 15
-* Python3
-* Perl
-* Java 21
-* Maven
-* Ant
-* Oracle Instant Client 21.11
+* Docker
+* Docker Compose Plugin
+* sshuttle
 
-.Environment Variables
-* `GUS_HOME`
-* `PROJECT_HOME`
-* `TEMPLATE_DB_NAME`
-* `TEMPLATE_DB_USER`
-* `TEMPLATE_DB_PASS`
+==== Inputs & Outputs
 
-===== Getting Set Up
+For information about the inputs and outputs expected by the scripts, see the
+script documentation in the
+https://github.com/VEuPathDB/vdi-plugin-handler-server#plugin-scripts[VDI Plugin Handler Readme].
 
-. Copy the file `local-dev.env` to a new file named simply `.env`.  This file
-  will be automatically read by Docker Compose when the stack is spun up.
-. Fill in the environment variables in the `.env` file with actual values for
-  the target application database.
+==== Running Scripts Locally
 
+===== Environment
 
-===== Building the Image
+The first step is getting an environment file set up for local execution.  This
+can be done by first copying the included `local-dev.env` to a new file named
+`.env` (this file will be ignored by git).  Then the new file will need to be
+edited to set real configuration values to replace the dummy config values.
 
-. Run `make build` to build or rebuild the image with your changes.
+Depending on the script you are developing and its requirements, some of the
+following variables may not be necessary, but in the service environment all
+scripts are provided the following set of environment variables in addition to
+their CLI inputs.
 
+[source, shell]
+----
+PROJECT_ID=PlasmoDB
+DB_HOST=SomeAppDBHost
+DB_PORT=1521
+DB_NAME=SomeAppDBName (name.site.com)
+DB_USER=SomeAppDBUser
+DB_PASS=SomeAppDBPassword
+DB_PLATFORM=Oracle
+----
 
-===== Running the Plugin Container
-
-. Run `make shell` to tunnel into a new, temporary plugin container where you
-  can execute your scripts.  The plugin container will be destroyed when exiting
-  the tunnelled shell.
-
-[IMPORTANT]
---
-The internal PostgreSQL instance is not started automatically.  If you are
-developing a plugin that relies on the internal Postgres instance, it will need
-to be manually started before doing local script testing.
+When running the scripts outside of Docker, these values will need to be set in
+your environment.  This may be easily done by sourcing the `.env` file
+after it has been edited.
 
 [source, console]
 ----
-$ /usr/lib/postgresql/15/bin/pg_ctl start
+$ source .env
 ----
---
+
+===== Execution
+
+. Start `sshuttle`
+. Source the `local-dev.env` file.
+. Run the target plugin script.
+
+==== Running Scripts in Docker
+
+As the plugin scripts require file inputs, the easiest way to test them in a
+running container is to copy the files into the container for initial
+development or testing purposes.  This is done by applying a temporary change to
+the Dockerfile to add a line for copying the test data into the image.
+
+[source, dockerfile]
+----
+COPY testdata/ /opt/veupathdb/testdata
+----
+
+This Dockerfile change should be removed before the plugin is ready to be
+released.
+
+===== Execution
+
+.Startup
+. Add any necessary testing changes to the Dockerfile.
+. Rebuild the docker image by running `make build`
+. Tunnel into a new temporary container by running `make shell`
+
+From there you should be able to execute your plugin scripts via the bash
+command line.
