@@ -91,3 +91,58 @@ for your handler.
 
 This repository follows the normal steps as outlined in the VEuPathDB Confluence
 doc titled "Deploy Containerized Services for Local Development".
+
+==== Script Development
+
+===== What's Included
+
+====== Resources
+
+Included in the base container are the following resources:
+
+* PostgreSQL 15
+* Python3
+* Perl
+* Java 21
+* Maven
+* Ant
+* Oracle Instant Client 21.11
+
+====== Environment Variables
+
+* `GUS_HOME`
+* `PROJECT_HOME`
+* `TEMPLATE_DB_NAME`
+* `TEMPLATE_DB_USER`
+* `TEMPLATE_DB_PASS`
+
+===== Getting Set Up
+
+. Copy the file `local-dev.env` to a new file named simply `.env`.  This file
+  will be automatically read by Docker Compose when the stack is spun up.
+. Fill in the environment variables in the `.env` file with actual values for
+  the target application database.
+
+
+===== Building the Image
+
+. Run `make build` to build or rebuild the image with your changes.
+
+
+===== Running the Plugin Container
+
+. Run `make shell` to tunnel into a new, temporary plugin container where you
+  can execute your scripts.  The plugin container will be destroyed when exiting
+  the tunnelled shell.
+
+[IMPORTANT]
+--
+The internal PostgreSQL instance is not started automatically.  If you are
+developing a plugin that relies on the internal Postgres instance, it will need
+to be manually started before doing local script testing.
+
+[source, console]
+----
+$ /usr/lib/postgresql/15/bin/pg_ctl start
+----
+--
