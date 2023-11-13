@@ -1,5 +1,7 @@
 = VDI Plugin Template
 :icons: font
+:toc:
+:toclevels: 3
 
 ifdef::env-github[]
 :tip-caption: :bulb:
@@ -96,10 +98,7 @@ doc titled "Deploy Containerized Services for Local Development".
 
 ===== What's Included
 
-====== Resources
-
-Included in the base container are the following resources:
-
+.Resources
 * PostgreSQL 15
 * Python3
 * Perl
@@ -108,8 +107,7 @@ Included in the base container are the following resources:
 * Ant
 * Oracle Instant Client 21.11
 
-====== Environment Variables
-
+.Environment Variables
 * `GUS_HOME`
 * `PROJECT_HOME`
 * `TEMPLATE_DB_NAME`
