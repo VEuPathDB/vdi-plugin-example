@@ -32,6 +32,8 @@ verifyDir "${OUTPUT_DIR}" || exit $EXIT_CODE_UNEXPECTED_ERROR
 
 logMessage "Here's a log message that will be printed to STDERR"
 
+>&2 env
+
 for file in "${INPUT_DIR}"/*; do
   logMessage "Copying ${file} to ${OUTPUT_DIR}"
   printWarning "Here's a validation warning about ${file} that will be printed to STDOUT"
