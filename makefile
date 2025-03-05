@@ -14,11 +14,15 @@ default:
 	@echo
 	@echo "  make start"
 	@echo
-	@echo "    Starts the project's $(IMAGE_NAME) image as a background container."
+	@echo "    Starts the compose stack for this plugin in the background."
 	@echo
 	@echo "  make stop"
 	@echo
-	@echo "    Shuts down a running background container for this project."
+	@echo "    Shuts down a running compose stack for this plugin."
+	@echo
+	@echo "  make destroy"
+	@echo
+	@echo "    Shuts down and purges state for the compose stack for this plugin."
 	@echo
 	@echo "  make logs"
 	@echo
@@ -37,14 +41,27 @@ default:
 build:
 	@$(CONTAINER_CMD) compose build
 
-start:
-	$(CONTAINER_CMD) compose $(COMPOSE_FILES) up -d; \
+start: .env
+	@mkdir -p mount/$$(grep 'SITE_BUILD=' .env | cut -d= -f2)
+	@$(CONTAINER_CMD) compose $(COMPOSE_FILES) up -d;
 
-stop:
-	@$(CONTAINER_CMD) compose $(COMPOSE_FILES) down -v
+stop: .env
+	@$(CONTAINER_CMD) compose $(COMPOSE_FILES) stop
+
+destroy: .env
+	@$(CONTAINER_CMD) compose $(COMPOSE_FILES) down -v --remove-orphans
 
 shell-cmd:
 	@echo $(CONTAINER_CMD) exec -it $${PWD##*/}-plugin-1 bash
 
-logs:
-	@$(CONTAINER_CMD) logs -f $(IMAGE_NAME)-plugin-1
+logs: .env
+	@$(CONTAINER_CMD) compose $(COMPOSE_FILES) logs -f
+
+
+# TESTS
+
+.env:
+	@echo >&2
+	@echo ".env file must be configured before running the stack." >&2
+	@echo >&2
+	@exit 1
