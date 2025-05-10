@@ -1,5 +1,6 @@
 services:
   plugin:
+    image: veupathdb/vdi-plugin-example:latest
     build:
       context: .
       dockerfile: Dockerfile
