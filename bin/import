@@ -35,6 +35,9 @@ logMessage "Here's a log message that will be printed to STDERR"
 >&2 env
 
 for file in "${INPUT_DIR}"/*; do
+  if [[ "$file" =~ ^${INPUT_DIR}/vdi-.+$ ]]; then
+    continue
+  fi
   logMessage "Copying ${file} to ${OUTPUT_DIR}"
   printWarning "Here's a validation warning about ${file} that will be printed to STDOUT"
   # validate "$file" || exit $EXIT_CODE_VALIDATION_ERROR
