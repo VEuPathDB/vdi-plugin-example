@@ -1,6 +1,6 @@
 # Any base image may be used as long as java21 is installed and the plugin
 # server is downloaded into it by runtime.
-FROM foxcapades/ubuntu-corretto:24.10-jdk21
+FROM foxcapades/ubuntu-corretto:24.04-jdk21
 
 ENV LANG=en_US.UTF-8 \
   JVM_MEM_ARGS="-Xms16m -Xmx64m" \
