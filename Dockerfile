@@ -13,7 +13,7 @@ RUN apt-get update \
   && sed -i -e "s/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/" /etc/locale.gen \
   && dpkg-reconfigure --frontend=noninteractive locales \
   && update-locale LANG=en_US.UTF-8 \
-  && apt-get install -y tzdata curl wget \
+  && apt-get install -y tzdata curl wget netcat-openbsd \
   && cp /usr/share/zoneinfo/America/New_York /etc/localtime \
   && echo ${TZ} > /etc/timezone
 
